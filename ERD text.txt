@@ -1,7 +1,7 @@
 Hall_Of_Fame
 -
 playerID varchar pk fk -< Batting.playerID
-yearID int
+yearID int pk fk -< Batting.yearID
 votedBy varchar
 ballots int
 needed int
@@ -13,8 +13,8 @@ needed_note varchar
 Batting
 -
 playerID varchar pk
-yearID int
-stint int
+yearID int pk
+stint int pk
 teamID varchar
 lgID varchar
 G int
@@ -37,12 +37,12 @@ GIDP int
 
 Fielding
 -
-playerID varchar pk fk -< Hall_Of_Fame.playerID
-yearID int
-stint int
+playerID varchar pk fk -< Batting.playerID
+yearID int pk fk -< Batting.yearID
+stint int pk fk -< Batting.stint
 teamID varchar
 lgID varchar
-POS varchar
+POS varchar pk
 G int
 GS int
 InnOuts int
@@ -59,8 +59,8 @@ ZR int
 Pitching
 -
 playerID varchar pk fk -< Hall_Of_Fame.playerID
-yearID int
-stint int
+yearID int pk fk -< Hall_Of_Fame.yearID
+stint int pk
 teamID varchar
 lgID varchar
 W int
@@ -92,8 +92,8 @@ GIDP int
 Awards
 -
 playerID varchar pk fk -< Hall_Of_Fame.playerID
-awardID varchar
-yearID int
+awardID varchar pk 
+yearID int pk fk -< Hall_Of_Fame.yearID
 lgID varchar
 tie varchar
 notes varchar

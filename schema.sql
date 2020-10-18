@@ -6,14 +6,14 @@ CREATE TABLE "Hall_Of_Fame" (
     "playerID" varchar   NOT NULL,
     "yearID" int   NOT NULL,
     "votedBy" varchar   NOT NULL,
-    "ballots" int   NOT NULL,
-    "needed" int   NOT NULL,
-    "votes" int   NOT NULL,
+    "ballots" int,
+    "needed" int,
+    "votes" int,
     "inducted" varchar   NOT NULL,
     "category" varchar   NOT NULL,
-    "needed_note" varchar   NOT NULL,
+    "needed_note",
     CONSTRAINT "pk_Hall_Of_Fame" PRIMARY KEY (
-        "playerID"
+        "playerID","yearID"
      )
 );
 
@@ -30,18 +30,18 @@ CREATE TABLE "Batting" (
     "2B" int   NOT NULL,
     "3B" int   NOT NULL,
     "HR" int   NOT NULL,
-    "RBI" int   NOT NULL,
-    "SB" int   NOT NULL,
-    "CS" int   NOT NULL,
-    "BB" int   NOT NULL,
-    "SO" int   NOT NULL,
-    "IBB" int   NOT NULL,
-    "HBP" int   NOT NULL,
-    "SH" int   NOT NULL,
-    "SF" int   NOT NULL,
-    "GIDP" int   NOT NULL,
+    "RBI" int,
+    "SB" int,
+    "CS" int,
+    "BB" int,
+    "SO" int,
+    "IBB" int,
+    "HBP" int,
+    "SH" int,
+    "SF" int,
+    "GIDP" int,
     CONSTRAINT "pk_Batting" PRIMARY KEY (
-        "playerID"
+        "playerID","yearID","stint"
      )
 );
 
@@ -53,19 +53,19 @@ CREATE TABLE "Fielding" (
     "lgID" varchar   NOT NULL,
     "POS" varchar   NOT NULL,
     "G" int   NOT NULL,
-    "GS" int   NOT NULL,
-    "InnOuts" int   NOT NULL,
-    "PO" int   NOT NULL,
-    "A" int   NOT NULL,
-    "E" int   NOT NULL,
-    "DP" int   NOT NULL,
-    "PB" int   NOT NULL,
-    "WP" int   NOT NULL,
-    "SB" int   NOT NULL,
-    "CS" int   NOT NULL,
-    "ZR" int   NOT NULL,
+    "GS" int,
+    "InnOuts" int,
+    "PO" int,
+    "A" int,
+    "E" int,
+    "DP" int,
+    "PB" int,
+    "WP" int,
+    "SB" int,
+    "CS" int,
+    "ZR" int,
     CONSTRAINT "pk_Fielding" PRIMARY KEY (
-        "playerID"
+        "playerID","yearID","stint","POS"
      )
 );
 
@@ -88,20 +88,20 @@ CREATE TABLE "Pitching" (
     "HR" int   NOT NULL,
     "BB" int   NOT NULL,
     "SO" int   NOT NULL,
-    "BAOpp" float   NOT NULL,
-    "ERA" float   NOT NULL,
-    "IBB" int   NOT NULL,
-    "WP" int   NOT NULL,
-    "HBP" int   NOT NULL,
-    "BK" int   NOT NULL,
-    "BFP" int   NOT NULL,
-    "GF" int   NOT NULL,
-    "R" int   NOT NULL,
-    "SH" int   NOT NULL,
-    "SF" int   NOT NULL,
-    "GIDP" int   NOT NULL,
+    "BAOpp" float,
+    "ERA" float,
+    "IBB" int,
+    "WP" int,
+    "HBP" int,
+    "BK" int,
+    "BFP" int,
+    "GF" int,
+    "R" int,
+    "SH" int,
+    "SF" int,
+    "GIDP" int,
     CONSTRAINT "pk_Pitching" PRIMARY KEY (
-        "playerID"
+        "playerID","yearID","stint"
      )
 );
 
@@ -109,23 +109,23 @@ CREATE TABLE "Awards" (
     "playerID" varchar   NOT NULL,
     "awardID" varchar   NOT NULL,
     "yearID" int   NOT NULL,
-    "lgID" varchar   NOT NULL,
-    "tie" varchar   NOT NULL,
-    "notes" varchar   NOT NULL,
+    "lgID" varchar,
+    "tie" varchar,
+    "notes" varchar,
     CONSTRAINT "pk_Awards" PRIMARY KEY (
-        "playerID"
+        "playerID","awardID","yearID"
      )
 );
 
-ALTER TABLE "Hall_Of_Fame" ADD CONSTRAINT "fk_Hall_Of_Fame_playerID" FOREIGN KEY("playerID")
-REFERENCES "Batting" ("playerID");
+ALTER TABLE "Hall_Of_Fame" ADD CONSTRAINT "fk_Hall_Of_Fame_playerID_yearID" FOREIGN KEY("playerID", "yearID")
+REFERENCES "Batting" ("playerID", "yearID");
 
-ALTER TABLE "Fielding" ADD CONSTRAINT "fk_Fielding_playerID" FOREIGN KEY("playerID")
-REFERENCES "Hall_Of_Fame" ("playerID");
+ALTER TABLE "Fielding" ADD CONSTRAINT "fk_Fielding_playerID_yearID_stint" FOREIGN KEY("playerID", "yearID", "stint")
+REFERENCES "Batting" ("playerID", "yearID", "stint");
 
-ALTER TABLE "Pitching" ADD CONSTRAINT "fk_Pitching_playerID" FOREIGN KEY("playerID")
-REFERENCES "Hall_Of_Fame" ("playerID");
+ALTER TABLE "Pitching" ADD CONSTRAINT "fk_Pitching_playerID_yearID" FOREIGN KEY("playerID", "yearID")
+REFERENCES "Hall_Of_Fame" ("playerID", "yearID");
 
-ALTER TABLE "Awards" ADD CONSTRAINT "fk_Awards_playerID" FOREIGN KEY("playerID")
-REFERENCES "Hall_Of_Fame" ("playerID");
+ALTER TABLE "Awards" ADD CONSTRAINT "fk_Awards_playerID_yearID" FOREIGN KEY("playerID", "yearID")
+REFERENCES "Hall_Of_Fame" ("playerID", "yearID");
 
