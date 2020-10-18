@@ -8,3 +8,9 @@ Due to the manner in which the data is provided in the various csv files, compos
 **Fig.1:**
 ![Fig.1](ERD.png)
 
+## Challenges
+As it currently stands, there are several issues with the structure of the database that will need to be addressed as we move through the project.  Most notably, we need to get the data in the tables to a state where they can be joined easily and correctly. Much of this can likely be pre-processed by reading the csv's into pandas df's and returning a clean csv, which can be then loaded into the postgreSQL database.  
+
+* How to join Hall of Fame table with statistics tables since each have rows with multiple years and potentially several entries per year for each playerID?  Will the yearID in the Hall of Fame table really be necessary as we will be attempting to tie the stats to past years to a players induction? 
+* How to combine rows for players that are traded during the season (i.e. multiple rows with the same playerID and yearID)?
+* Should the stats be computed as an average per year for each player rather than looking at each year individually since the players are not up for Hall of Fame votes in the same year as they played?  
