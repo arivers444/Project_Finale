@@ -27,5 +27,9 @@ Machine learning model that predicts HOF players based on performance in batting
 
 ## Questions to answer
 
-
+1) Can the model select the appropriate HOF canditate.
+2) Accuracy of the model overall
+3) Does previous awards help identify players that may be inducted
+4) Does player popularity effect the election results.
+5) Does statistical performance predict candidates
 
