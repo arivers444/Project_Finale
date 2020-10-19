@@ -4,14 +4,13 @@
 Established in 1936, the Baseball Hall of Fame (HOF) recognizes the best baseball players in the game. Inductees are selected each year, and join a Hall of Fame Class. The players selected join a caste of the best players and most noted names in the game and include more than 300 players.
 
 ## Overview
-The goal of this model is to develop a model that is capabable of selecting the probable players based on player performance and awards. 
+The goal is to develop a model that is capabable of selecting the probable elected players based on player performance and awards. 
 
-Each player that is selected for a HOF class is elected by commitee. Any candidate that meets the threshold of 75% of the comitee vote will be considered elected to the HOF.
-
+Each player that is selected for a HOF class is elected by commitee. Any candidate that meets the threshold of 75% of the comitee vote will be considered elected to the HOF. Using Logistic regresion, the aim is to be able to predict future players based on past class electees perofmance.
 
 
 ## Data
-Data for this project was pulled from seanlahman.com
+Data for this project was attained from seanlahman.com
 
 The data is contained in a number of .csv file all of which are available fro the source website.
 
