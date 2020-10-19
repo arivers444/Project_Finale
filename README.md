@@ -1,6 +1,6 @@
 # Final Project
 
-# Description of Communication Protocols:
+## Description of Communication Protocols:
 
 ### Slack Direct Messaging
 - Project team members will use an open platform for communication using a unique Slack direct messaging group.
@@ -8,7 +8,7 @@
 ### Pull Requests
 - Pull requests will initiate discussion about team member commits. Pull requests help start a code review and conversation about proposed changes before they're merged into the master branch.
 
-## Baseball Hall of Fame Inductees
+# Baseball Hall of Fame Inductees
 
 Established in 1936, the Baseball Hall of Fame (HOF) recognizes the best baseball players in the game. Inductees are selected each year, and join a Hall of Fame class. The players selected join a caste of the best players and most noted names in the game and include more than 300 players.
 
@@ -23,7 +23,7 @@ Data for this project was attained from seanlahman.com.
 
 The data is contained in a number of .csv files all of which are available from the source website.
 
-the specific .csv files used are:
+The specific .csv files used are:
 
     1) HallofFame.csv
     2) Batting.csv
@@ -41,8 +41,6 @@ Questions to answer:
     3) Do previous awards help identify players that may be inducted?
     4) Does player popularity effect the election results?
     5) Does statistical performance predict candidates?
-
-
 
 # Database
 The database for this project is built in PostgreSQL using pgAdmin4.
