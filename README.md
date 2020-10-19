@@ -1,6 +1,6 @@
 # Final Project
 
-# Description of Communication Protocols:
+## Description of Communication Protocols:
 
 ### Slack Direct Messaging
 - Project team members will use an open platform for communication using a unique Slack direct messaging group.
