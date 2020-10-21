@@ -1,4 +1,4 @@
-playerID,awardID,yearID,lgID,tie,notes
+playerID,award_count,year_count,lgID_count,tie_count,notes_count
 aaronha01,16,16,16,0,12
 abbotji01,2,2,2,0,1
 abernte02,2,2,2,0,0
