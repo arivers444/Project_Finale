@@ -1,25 +1,40 @@
 # Project_Finale
 
 # Team Roles
-Nick worked on the Database section this week (as the Cirlce Role).
-Dane worked on the Machine Learning Model and provided the [provisional code](logistic_regression_MLmodel.txt) that connects to this provisional database.
+For Segment 2, Nick worked on the Database section again this week.  Dane worked on the Machine Learning Model and provided the [provisional code](logistic_regression_MLmodel.txt) that connects to this provisional database.
 
 # Database
 The database for this project is built in PostgreSQL using pgAdmin4.
 
-## Raw Data
-Raw data was obtained in the form of several CSV files from [Lahman's Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).  Attempts to load this data as it was downloaded presented some unique problems that will need to be addressed as we move forward in the project.  
+## Data
+
+### Raw Data
+Raw data was obtained in the form of several CSV files from [Lahman's Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).  Attempts to load this data as it was downloaded presented some unique problems that will need to be addressed as we move forward in the project.
+
+### Pre-Processing
+As noted above, the raw data was not in a format that could be loaded into our database and needed to be pre-processed in order to be useful for the machine learning model.  Each csv file needed to have a column with unique rows to use for a primary key.  We chose the playerID as this unique identifier.  To achieve this, the Hall of Fame file was modified by dropping all of the duplicate entries of playerID and only keeping the last entry since this would tell us if the player was inducted or not.  The Batting, Fielding, and Pitching statistics were grouped by playerID and aggregated to provide career statistics for each player.  Finally, the Awards data was simply grouped by playerID to obtain a count of awards that each player received over their career.  Each csv is read in, cleaned, and then exported to provide the format that can be loaded into our PostgreSQL database.  The code to perform this pre-processing is found in the file:  [preprocessing_data.ipynb](preprocessing_data.ipynb).
 
 ## Structure
-The database was designed using the QuickDBD tool.  The ERD is shown below in Fig.1.  <br>
-Due to the manner in which the data is provided in the various csv files, composite primary keys must be used in order to ensure unique row identifiers.  As we move through the project and determine how we need the data to look, this ERD will be updated.
+The database was designed using the QuickDBD tool.  The revised ERD is shown below in Fig.1.  <br>
+Now that the data has been cleaned the primary keys are much simplier than our first attempt.  When trying to load the cleaned csv's into the database we found that our foreign key assignments were not allowing us to load in the data.  This was due to the fact that not all of the same playerID's were in each csv.  To overcome this, we pulled the csv with a master list of players and tied all of the other tables to this one with foreign keys.  
 
 **Fig.1:**
-![Fig.1](ERD.png)
+![Fig.1](ERD_Rev2.png)
 
-## Challenges
-As it currently stands, there are several issues with the structure of the database that will need to be addressed to move forward with the project.  Most notably, we need to get the data in the tables to a state where they can be joined easily and correctly for the machine learning model. Much of this can likely be pre-processed by reading the csv's into pandas df's and returning a clean csv, which can be then loaded into the postgreSQL database.  This should be the main focus for the Circle Role in week 2.  
+### Accessing the Database
+Since our PostgreSQL database is hosted locally, it will be necessary for each team member to create a database on their machine.  The following are steps to do so:
 
-* How to join Hall of Fame table with statistics tables since each have rows with multiple years and potentially several entries per year for each playerID?  Will the yearID in the Hall of Fame table really be necessary as we will be attempting to tie the stats to past years to a players induction? 
-* How to combine rows for players that are traded during the season (i.e. multiple rows with the same playerID and yearID)?
-* Should the stats be computed as an average per year for each player rather than looking at each year individually since the players are not up for Hall of Fame votes in the same year as they played?
+1. Pull the cleaned csv from the [data directory](/data)
+    * HOF.csv
+    * Batting_cleaned.csv
+    * Fielding_cleaned.csv
+    * Pitching_cleaned.csv
+    * award_count.csv
+    * People_cleaned.csv
+2. Create a database instance in pgAdmin4
+3. Use the queries in the file [schema_Rev2.sql](schema_Rev2.sql) to create the necessary tables
+4. Manually import the csv's above into the database tables
+5. Run the queries in the file [queries.sql](queries.sql) to join the tables
+6. Manually export these new tables to csv's if desired
+
+Note:  We can test our machine learning model by pulling in these csv's prior to the final production ready code that will pull directly from the database.  
