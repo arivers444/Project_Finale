@@ -1,23 +1,48 @@
 import pandas as pd
 import psycopg2 as pg
-import pandas.io.sql as psql
- 
-# get connected to the database
-connection = pg.connect("dbname=mydatabase user=postgres")
- 
-dataframe = psql.frame_query("SELECT * FROM <tablename>", connection)
-y = df["Outcome"]
-X = df.drop(columns="Outcome")
 
-#input baseball stats of players career- batting, feilding, awards. output = did they make the hall of fame.
+from google.colab import files 
+uploaded = files.upload()
+
+import io
+df = pd.read_csv(io.BytesIO(uploaded['ml_BattingFielding.csv']))
+df.head()
+# Dataset is now stored in a Pandas Dataframe
+
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df2 = HallofFame_df.copy()
+df2['inducted'] = le.fit_transform(df2['inducted'])
+
+df2['playerID'] = le.fit_transform(df2['playerID'])
+
+from sklearn.preprocessing import StandardScaler
+data_scaler = StandardScaler()
+
+df2_data_scaled = data_scaler.fit_transform(df2)
+
+#verify that the mean of each column is 0 and its standard deviation is 1:
+import numpy as np
+print(np.mean(df2_data_scaled[:,0]))
+print(np.std(df2_data_scaled[:,0]))
+
+y = df2["inducted"]
+X = df2.drop(columns="inducted")
+
+
 
 from sklearn.model_selection import train_test_split
-
 X_train, X_test, y_train, y_test = train_test_split(X, 
                                                     y, 
                                                     random_state=1, 
                                                     stratify=y)
 X_train.shape
+
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(solver='lbfgs',
+   max_iter=2000,
+   random_state=1)
 
 classifier.fit(X_train, y_train)
 
@@ -32,4 +57,4 @@ results = pd.DataFrame({"Prediction": y_pred, "Actual": y_test}).reset_index(dro
 results.head(20)
 
 from sklearn.metrics import accuracy_score
-print(accuracy_score(y_test, y_pred))                  
+print(accuracy_score(y_test, y_pred)) 
