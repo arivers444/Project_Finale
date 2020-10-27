@@ -1,0 +1,87 @@
+Hall_Of_Fame
+-
+playerID varchar pk fk -< Batting.playerID
+yearID int(4)
+votedBy varchar
+ballots int
+needed int
+votes int 
+inducted varchar(1) 
+category varchar
+needed_note varchar
+
+Batting
+-
+playerID varchar pk
+G int
+AB int
+R int
+H int
+2B int
+3B int
+HR int
+RBI int
+SB int
+CS int
+BB int
+SO int
+IBB int
+HBP int
+SH int
+SF int
+GIDP int
+AVG float
+
+Fielding
+-
+playerID varchar pk fk -< Batting.playerID
+G int
+GS int
+InnOuts int
+PO int
+A int
+E int
+DP int
+PB int
+WP int
+SB int
+CS int
+ZR int
+
+Pitching
+-
+playerID varchar pk fk -< Hall_Of_Fame.playerID
+W int
+L int
+G int
+GS int
+CG int
+SHO int
+SV int
+IPouts int
+H int
+ER int
+HR int
+BB int
+SO int
+BAOpp float
+ERA float
+IBB int
+WP int
+HBP int
+BK int
+BFP int
+GF int
+R int
+SH int
+SF int
+GIDP int
+
+Awards
+-
+playerID varchar pk fk -< Hall_Of_Fame.playerID
+award_count int
+year_count int
+lgID_count varchar
+tie_count varchar
+notes_count varchar
