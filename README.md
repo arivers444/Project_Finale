@@ -57,4 +57,4 @@ As it currently stands, there are several issues with the structure of the datab
 
 * How to join Hall of Fame table with statistics tables since each have rows with multiple years and potentially several entries per year for each playerID?  Will the yearID in the Hall of Fame table really be necessary as we will be attempting to tie the stats to past years to a players induction? 
 * How to combine rows for players that are traded during the season (i.e. multiple rows with the same playerID and yearID)?
-* Should the stats be computed as an average per year for each player rather than looking at each year individually since the players are not up for Hall of Fame votes in the same year as they played?  
+
