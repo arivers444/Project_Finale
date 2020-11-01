@@ -1,5 +1,7 @@
 # ignore initial files
 exploring_data.ipynb
+"ERD text.txt"
+"ERD text_Rev1.txt"
 
 # ignore database.ini
 database.ini
