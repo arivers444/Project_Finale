@@ -1,60 +1,34 @@
 # Final Project
 
-## Description of Communication Protocols:
+## Team Roles
+Nick again focused on the database for Segment #2.  <br>
 
-### Slack Direct Messaging
-- Project team members will use an open platform for communication using a unique Slack direct messaging group.
+## Pre-Processing Raw Data
+Following Segment #1 where a preliminary database was created, it was necessary to address several problems that were encountered.  The foremost issue being that the database tables did not have a true primary key.  That is, there was no unique identifier for each row of data.  Despite attempts to employ a composite primary key, the raw csv files could not be used in their current form.  Following group discussion, it was decided that the batting, fielding, and pitching statistics would be aggregated to produce career statistics.  This was accomplished by using the Pandas groupby method, and provided a single row of data unique to each playerID.  To get this same result for the Hall of Fame table, we needed to drop duplicates and keep the last row (this would keep a yes if the player was inducted and keep a no if they were not).  Finally, the group decided to use a total count of awards from the awards csv data.  Once these changes were made, the Pandas dataframes were exported to csv files so they could be imported into the PostgreSQL database.<br>
+<br>
+The code to accomplish these tasks can be found in the Juptyer Notebook:  [preprocessing_data.ipynb](preprocessing_data.ipynb)
 
-### Pull Requests
-- Pull requests will initiate discussion about team member commits. Pull requests help start a code review and conversation about proposed changes before they're merged into the master branch.
+### Updated Database
+The database design was updated using QuickDBD.  The .sql was exported from QuickDBD's website and used to create the tables in pgAdmin4.  Due to the structure of the raw data files, the queries were modified to remove the not null constraints that were defaulted in QuickDBD.  <br>
+[schema_Rev2.sql](schema_Rev2.sql)
 
-## Baseball Hall of Fame Inductees
-Established in 1936, the Baseball Hall of Fame (HOF) recognizes the best baseball players in the game. Inductees are selected each year, and join a Hall of Fame class. The players selected join a caste of the best players and most noted names in the game and include more than 300 players.
-
-## Overview
-The goal is to develop a model that is capable of selecting the probable elected players based on player performance and awards.
-
-Each player that is selected for a HOF class is elected by committee. Any candidate that meets the threshold of 75% of the committee vote will be considered elected to the HOF. Using logistic regression, the aim is to be able to predict future players based on past class electee performance.
-
-## Data
-Data for this project was attained from seanlahman.com.
-
-The data is contained in a number of .csv files all of which are available from the source website.
-
-The specific .csv files used are:
-
-    1) HallofFame.csv
-    2) Batting.csv
-    3) Pitching.csv
-    4) Fielding.csv
-    5) Awards.csv
-
-## Expected outcomes
-Machine learning model that predicts HOF players based on performance in batting, fielding, pitching, and awards.
-Questions to answer:
-
-    1) Can the model select the appropriate HOF candidate?
-    2) Accuracy of the model overall?
-    3) Do previous awards help identify players that may be inducted?
-    4) Does player popularity effect the election results?
-    5) Does statistical performance predict candidates?
-
-# Database
-The database for this project is built in PostgreSQL using pgAdmin4.
-
-## Raw Data
-Raw data was obtained in the form of several .csv files from [Lahman's Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).  Attempts to load this data as it was downloaded presented some unique problems that will need to be addressed as we move forward in the project.  
-
-## Structure
-The database was designed using the QuickDBD tool.  The ERD is shown below in Fig.1.  <br>
-Due to the manner in which the data is provided in the various .csv files, composite primary keys must be used in order to ensure unique row identifiers.  As we move through the project and determine how we need the data to look, this ERD will be updated.
+### Challenges
+When attempting to import the pre-processed csv files to the PostgreSQL database, we ran into an issue with foreign keys.  Since not all of the playerID's were in each table, we were getting an error when trying to load data.  To overcome this error, we pulled in the master list of players (people.csv) and tied all of the other tables to it with playerID as foreign keys.  See Fig.1 for the revised ERD.
 
 **Fig.1:**
-![Fig.1](ERD.png)
+![Fig.1](ERD_Rev2.png)
 
-## Challenges
-As it currently stands, there are several issues with the structure of the database that will need to be addressed to move forward with the project.  Most notably, we need to get the data in the tables to a state where they can be joined easily and correctly for the machine learning model. Much of this can likely be pre-processed by reading the .csv's into pandas df's and returning a clean .csv, which can be then loaded into the postgreSQL database.  This should be the main focus for the Circle Role in week 2.  
+## Connection to Machine Learning Algorithm
 
-* How to join Hall of Fame table with statistics tables since each have rows with multiple years and potentially several entries per year for each playerID?  Will the yearID in the Hall of Fame table really be necessary as we will be attempting to tie the stats to past years to a players induction? 
-* How to combine rows for players that are traded during the season (i.e. multiple rows with the same playerID and yearID)?
+### Interim Step
+As a first step, and in order to test the machine learning algorithm, we first query the database to create new tables which could then be exported as csv files.  These csv files could then be easily loaded to Pandas dataframes by other group members while I worked on connecting the database directly to the machine learning code.  This also allowed the other team members to work through the machine learning code without having to set up the database on their local machines (since our PostgreSQL database is hosted locally).<br>
+The queries made in pgAdmin4 can be found in the file:  [queries.sql](queries.sql)<br>
+Additionally, the csv's exported out of the database for testing the ML code can be found in the [data directory](/data):  
+* ml_table.csv (all data combined)
+* ml_pitching.csv
+* ml_BattingFielding.csv
+
+### Final Connection
+Finally, the code was developed to directly connect the PostgreSQL database to the machine learning code.   A bit of pre-processing was necessary to remove NaN's as the ML code did not like empty values in the dataframe it was being fed.  Also, the inducted column needed to be encoded from text to numeric datatype.  <br>
+This code can be found in the Jupyter Notebook:  [HOF_randomF.ipynb](HOF_randomF.ipynb)
 
