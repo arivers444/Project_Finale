@@ -8,26 +8,27 @@
 ### Pull Requests
 - Pull requests will initiate discussion about team member commits. Pull requests help start a code review and conversation about proposed changes before they're merged into the master branch.
 
-## Baseball Hall of Fame Inductees
-Established in 1936, the Baseball Hall of Fame (HOF) recognizes the best baseball players in the game. Inductees are selected each year, and join a Hall of Fame class. The players selected join a caste of the best players and most noted names in the game and include more than 300 players.
+# Baseball Hall of Fame Inductees 
 
-## Overview
-The goal is to develop a model that is capable of selecting the probable elected players based on player performance and awards.
+## Project Outline
 
-Each player that is selected for a HOF class is elected by committee. Any candidate that meets the threshold of 75% of the committee vote will be considered elected to the HOF. Using logistic regression, the aim is to be able to predict future players based on past class electee performance.
+### Goal
+- The goal of this project is to create a Machine Learning model that will accurately predict the likelihood of a player being inducted into the Baseball Hall of Fame based on their playing statistics over the course of their Major League Baseball career.
 
-## Data
-Data for this project was attained from seanlahman.com.
+### Database & Preprocessing
+- The analysis takes in data from several CSV files found on [SeanLahman.com](http://www.seanlahman.com/baseball-archive/statistics/). An ERD was created using [QuickDataBaseDiagrams.com](http://www.quickdatabasediagrams.com). A database was then created using PostgreSQL and pgAdmin4. 
 
-The data is contained in a number of .csv files all of which are available from the source website.
+**Fig.1:**
+![Fig.1](ERD_Rev2.png)
 
-The specific .csv files used are:
+- Two new dataframes were created and data was cleaned using both Jupyter Notebook and Google Colab. One dataframe was created for batters/fielders and one for pitchers. This split was performed in an effort to minimize discrepancies in available player statistics between those players that play in the field and bat each inning versus pitchers that do not have the same available fielding and batting data. 
 
-    1) HallofFame.csv
-    2) Batting.csv
-    3) Pitching.csv
-    4) Fielding.csv
-    5) Awards.csv
+- These dataframes were then appended to include whether or not a player has been inducted into the Baseball Hall of Fame. Data was then split into training and testing datasets for our model. Data was also scaled to equalize the range of data for each feature.
+
+### Machine Learning
+- Next, Logistic Regression was used as the initial model in analyzing the data. This returned about 76% accuracy with about 90% recall for those not inducted and about 50% recall on those that were inducted.
+
+- Second, Random Forest Classifier was used to predict the likelihood of future Hall of Famers with much better recall. The output lists the Confusion Matrix, Accuracy Score, and Classification Report for each Dataframe. Currently, the model is running at about 87% accuracy for the batters/fielders with about 91% recall for those not inducted and 73% recall for those that were inducted.
 
 ## Expected outcomes
 Machine learning model that predicts HOF players based on performance in batting, fielding, pitching, and awards.
@@ -38,23 +39,3 @@ Questions to answer:
     3) Do previous awards help identify players that may be inducted?
     4) Does player popularity effect the election results?
     5) Does statistical performance predict candidates?
-
-# Database
-The database for this project is built in PostgreSQL using pgAdmin4.
-
-## Raw Data
-Raw data was obtained in the form of several .csv files from [Lahman's Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).  Attempts to load this data as it was downloaded presented some unique problems that will need to be addressed as we move forward in the project.  
-
-## Structure
-The database was designed using the QuickDBD tool.  The ERD is shown below in Fig.1.  <br>
-Due to the manner in which the data is provided in the various .csv files, composite primary keys must be used in order to ensure unique row identifiers.  As we move through the project and determine how we need the data to look, this ERD will be updated.
-
-**Fig.1:**
-![Fig.1](ERD_Rev2.png)
-
-## Challenges
-As it currently stands, there are several issues with the structure of the database that will need to be addressed to move forward with the project.  Most notably, we need to get the data in the tables to a state where they can be joined easily and correctly for the machine learning model. Much of this can likely be pre-processed by reading the .csv's into pandas df's and returning a clean .csv, which can be then loaded into the postgreSQL database.  This should be the main focus for the Circle Role in week 2.  
-
-* How to join Hall of Fame table with statistics tables since each have rows with multiple years and potentially several entries per year for each playerID?  Will the yearID in the Hall of Fame table really be necessary as we will be attempting to tie the stats to past years to a players induction? 
-* How to combine rows for players that are traded during the season (i.e. multiple rows with the same playerID and yearID)?
-
