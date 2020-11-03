@@ -35,9 +35,14 @@ Machine learning model that predicts HOF players based on performance in batting
 ## Data exploration
 
 In order to run the machine learning model, each file had to be cleaned and prepared to create the database.
-
-### Issues 
+ 
 There were numerous issues encountered during this phase. 
 - Nominations may cover multiple years, and the end result was not always an induction. To rectify this, we selected the last year each player was nominated as it would result in the selection or non selection of each player.
-- 
+- Data types in the data frames was inconsistent with the needs for analysis.
+- Null values were also dealt with, by removing those data points.
+- Once data was cleaned, a new dataframe was constructed, and player stats were added.
+- Ultimately two dataframes were built, one for batting/fielding and on for pitching.
+ 
+ #### Analysis
+ - Predicting HOF ball players is closely linked to numerous statistics, as well as awards earned during a career. 
 
