@@ -32,3 +32,12 @@ Machine learning model that predicts HOF players based on performance in batting
 4) Does player popularity effect the election results.
 5) Does statistical performance predict candidates
 
+## Data exploration
+
+In order to run the machine learning model, each file had to be cleaned and prepared to create the database.
+
+### Issues 
+There were numerous issues encountered during this phase. 
+- Nominations may cover multiple years, and the end result was not always an induction. To rectify this, we selected the last year each player was nominated as it would result in the selection or non selection of each player.
+- 
+
