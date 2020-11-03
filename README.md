@@ -15,6 +15,8 @@ Although we thought 80% accuracy was quite good, we decided to try a Random Fore
 The data was split into testing and training sets using sklearn.model_selection train_test_split. We created a StandardScaler instance and scaled the data. When creating the random forest classifier we decided to start with high number of forests (128). This did not cause any issues. 
 
 
+ML Model Update. Added GIDP to list of features. Increased accuracy by 1%. 11/3/2020 9:48am
+https://colab.research.google.com/drive/1ak4sSRlJoTu7tilCl81OcQNbHRtugpoZ?usp=sharing
 
 ML Model Update. Added user interface and a bar chart. 11/1/2020 6:54pm
 https://colab.research.google.com/drive/15FxKPFIvdBB1D6gBEd9JUsD_yQekn_XN?usp=sharing
