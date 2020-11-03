@@ -1,0 +1,98 @@
+People
+-
+playerID varchar pk
+birthCountry varchar
+nameFirst varchar
+nameLast varchar
+weight int
+height int
+bats varchar
+throws varchar
+
+Hall_Of_Fame
+-
+playerID varchar pk fk -< People.playerID
+yearID int
+votedBy varchar
+ballots float
+needed float
+votes float 
+inducted varchar(1) 
+category varchar
+needed_note varchar
+
+Batting
+-
+playerID varchar pk fk -< People.playerID
+G int
+AB int
+R int
+H int
+2B int
+3B int
+HR int
+RBI float
+SB float
+CS float
+BB int
+SO float
+IBB float
+HBP float
+SH float
+SF float
+GIDP float
+AVG float
+
+Fielding
+-
+playerID varchar pk fk -< People.playerID
+G int
+GS float
+InnOuts float
+PO int
+A int
+E float
+DP int
+PB float
+WP float
+SB float
+CS float
+ZR float
+
+Pitching
+-
+playerID varchar pk fk -< People.playerID
+W int
+L int
+G int
+GS int
+CG int
+SHO int
+SV int
+InningsPitchedouts int
+H_allowed int
+ER int
+HR_allowed int
+BB_allowed int
+StruckOut int
+BAOpp float
+ERA float
+IBB_allowed float
+WP int
+HitBatsmen float
+BK int
+BFP float
+GF int
+R_allowed int
+SH_allowed float
+SF_allowed float
+GIDP_pitcher float
+
+Awards
+-
+playerID varchar pk fk -< People.playerID
+award_count int
+year_count int
+lgID_count int
+tie_count int
+notes_count int
