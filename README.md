@@ -47,8 +47,11 @@ There were numerous issues encountered during this phase.
  - Predicting HOF ball players is closely linked to numerous statistics, as well as awards earned during a career. 
  - Random forrest classifier and linear regresion models both showed promise, and had accuracy rates of 80% or better.
  
-####Visuals for the presentation wil include: 
+#### Visuals for the presentation wil include: 
 
 Pie chart, of inductees vs noninductees
 Bar graph of the most important stats
 interactive element showing a players likely hood to be elected in the future based on their stats.
+
+#### Add tech used
+
