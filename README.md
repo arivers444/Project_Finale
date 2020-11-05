@@ -60,6 +60,7 @@ https://colab.research.google.com/drive/1cXjdHwemP3AJ_f5Jfpr0uwXNQXcpY9wb?usp=sh
 
 - Second, Random Forest Classifier was used to predict the likelihood of future Hall of Famers with much better recall. The output lists the Confusion Matrix, Accuracy Score, and Classification Report for each Dataframe. Currently, the model is running at about 87% accuracy for the batters/fielders with about 91% recall for those not inducted and 73% recall for those that were inducted.
 
+<<<<<<< HEAD
 ## Expected outcomes
 Machine learning model that predicts HOF players based on performance in batting, fielding, pitching, and awards.
 Questions to answer:
@@ -69,3 +70,8 @@ Questions to answer:
     3) Do previous awards help identify players that may be inducted?
     4) Does player popularity effect the election results?
     5) Does statistical performance predict candidates?
+=======
+### Final Connection
+Finally, the code was developed to directly connect the PostgreSQL database to the machine learning code.   A bit of pre-processing was necessary to remove NaN's as the ML code did not like empty values in the dataframe it was being fed.  Also, the inducted column needed to be encoded from text to numeric datatype.  <br>
+This code can be found in the Jupyter Notebook:  [HOF_randomF.ipynb](HOF_randomF.ipynb)
+>>>>>>> 77d9478332d636af98258403da809e742a326be3
