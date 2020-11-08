@@ -1,13 +1,3 @@
-### Angela is responsible for the GitHub portion of this week's deliverables.
-
-## Description of Communication Protocols:
-
-### Slack Direct Messaging
-- Project team members will use an open platform for communication using a unique Slack direct messaging group.
-
-### Pull Requests
-- Pull requests will initiate discussion about team member commits. Pull requests help start a code review and conversation about proposed changes before they are merged into the master branch.
-
 # Baseball Hall of Fame Inductees 
 
 ## Project Outline
