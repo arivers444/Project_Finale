@@ -1,3 +1,6 @@
+### Segment 3: This week I am assisting in creating statistical data analysis and visuals for the presentation using Matplotlib and Numpy.
+
+
 # Baseball Hall of Fame Inductees 
 
 ## Project Outline
