@@ -3,7 +3,8 @@
 ## Background
 
 ### Goal
-* The goal of this project is to create a Machine Learning model that will accurately predict the likelihood of a player being inducted into the Baseball Hall of Fame (HOF) based on their playing statistics over the course of their Major League Baseball career.
+The goal of this project is to create a Machine Learning model that will accurately predict the likelihood of a player being inducted into the Baseball Hall of Fame (HOF) based on their playing statistics over the course of their Major League Baseball career.
+
 
 ### Expected outcomes
 Machine learning model that predicts HOF players based on performance in batting, fielding, pitching, and awards.
