@@ -1,11 +1,11 @@
 # Final Project - Baseball Hall Of Fame
 
 # Team Roles
-For Segment #3 Nick worked as the square role:
-* updated README.md for the main branch
-* created [requirements.txt file](requirements.txt)
-* developed conditionals in ML code to select code specific to batting/fielding or pitching datasets 
-* led meetings & checked code of other team members
+For Segment #4 Nick worked essentially as the square role:
+* finalized README.md for the main branch
+* hosted/led meetings
+* finalized code by cleaning up and being sure it was appropriately commented
+* helped build and organize the final presentation
 
 ## Background
 
