@@ -1,5 +1,12 @@
 # Final Project - Baseball Hall Of Fame
 
+# Team Roles
+For Segment #3 Nick worked as the square role:
+* updated README.md for the main branch
+* created [requirements.txt file](requirements.txt)
+* developed conditionals in ML code to select code specific to batting/fielding or pitching datasets 
+* led meetings & checked code of other team members
+
 ## Background
 
 ### Goal
@@ -87,10 +94,12 @@ The data was split into testing and training sets using sklearn.model_selection 
 The next step was to investigate feature importance.  We pull out the features and sort them in descending order.  This information is also visualized with a bar chart.  
 
 ### Results 
-
+The Batting/Fielding dataset produced an accuracy score of 86.6%.  The recall was 91% for those not inducted and 73% for those inducted.  <br>
+The Pitching dataset was much smaller and produced an accuracy score of 85.1%.  The recall was 96% for those not inducted and only 53% for those inducted.  <br> 
+Further details can be found in the Appendix of the Google Slides Presentation (linked below).
 
 ### Statistical Investigation
-In order to address the question of human bias in the selection process (i.e. popularity versus statistical merit), the group decided to investigate the statistics in the instances where the model correctly predicted the outcome versus incorrect predictions.  That is, how much difference are there in the mean values in some of the key features?  
+In order to address the question of human bias in the selection process (i.e. popularity versus statistical merit), the group decided to investigate the statistics in the instances where the model correctly predicted the outcome versus incorrect predictions.  That is, how much difference are there in the mean values in some of the key features?  The various boxplots can be found in the [analysis folder](/analysis)
 
 ## Presentation / Dashboard
 [Google Slides](https://docs.google.com/presentation/d/17Ze4TTQrjxyFDvFswRykFGpzRVK7VgnTofYM1js-FEg/edit?ts=5fa32ae8#slide=id.p)
@@ -107,4 +116,5 @@ Building the database took several iterations.  The primary and foreign keys nee
 * Build an improved dashboard with html & interactive javascript
   1. Dynamic content that allows users to choose pitching or batting fielding changing the page based on the selection
   2. Input area to predict Hall of Fame induction based on stats the user would enter
+  3. Connect PostgreSQL database to Amazon AWS
 * Consider building a Deep Learning model
